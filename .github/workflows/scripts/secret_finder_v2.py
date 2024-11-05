@@ -8,8 +8,15 @@
 
 
 def main():
-    
-    print("Todavía no estoy listo!")
+    import subprocess as sp
+    import sys
+    ruta = sys.argv[1]  # esto coge el paraemtro en la poscion 1, no la 0 que es el archivo
+    clave = sys.argv[2]
+    resultado = sp.run(["egrep", "-R", clave, ruta], capture_output=True, text=True)
+    print(resultado)
+    if resultado.returncode == 0:
+        print("Se an encontrado coincidencias")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
